@@ -13,11 +13,10 @@
 
 ---
 
-## Introductie
+## Inleiding
 
-Deze GitHub pagina staat in het teken van magische spreuken en hun eigenschappen (Harry Potter⚡). Met behulp van historische registergegevens kan de **kracht**, **nauwkeurigheid** en het **risiconiveau** geanalyseerd worden. Voor een goede tovenaar is het van belang dat de gebruikte spreuken effectief en veilig zijn om te gebruiken. Daarnaast is het van belang voor elke tovenaar om rekening te houden met de compatibiliteit van het type toverstok dat gebruikt wordt om de geschiktheid van spreukgebruik af te stemmen.  
+Reumatoïde Artritis (RA) is de meest voorkomende chronische autoimmuunziekte van gewrichten. RA is een systemische auto-immuunziekte dit betekent dat het immuunsysteem het eigen lichaam aanvalt, niet op één specifieke plek maar verspreidt over het hele lichaam. Het veroorzaakt blijvende inflammatie wat zorgt voor zwellingen van gewrichten, vervorming, een verminderde dagelijkse functionaliteit en levenskwaliteit [(Sharif et al., 2018)](casus/Rheumatoid Arthritis A Brief Overview). RA beïnvloed vooral de gewrichten en kan ook organen beïnvloeden, wat kan leiden tot permanente schade en beperking (Bullock et al., 2019). De exacte oorzaak van de aandoening is nog niet bekend, zowel genetica als milieu dragen bij aan de ontwikkeling van de ziekte (Aho & Heliövaara, 2004). Er is tot op heden nog geen geneesmiddel voor de aandoening, wat een aanleiding is voor het uitvoeren van het onderzoek (Bullock et al., 2019). Het doel van dit onderzoek is om te bepalen of er een verschil is in genexpressie tussen gezonde patiënten en patiënten met Reumatoïde Artritis. Dit doel wordt bereikt door te kijken naar welke genen differentieel tot expressie gebracht zijn bij RA-patiënten, door een DESeq2 analyse uit te voeren. Ook wordt er met behulp van een Volcanoplot gekeken welke genen de grootste verschillen in expressie tussen patiënten vertonen. Als laatst wordt er gekeken naar welke pathways betrokken zijn bij ontwikkeling van RA, door een pathway analyse uit te voeren.
 
-Heb je Harry Potter nooit gelezen? Moet je echt doen, [klik maar hier](bronnen/harry-potter.pdf).
 
 ## Methoden
 
