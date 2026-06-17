@@ -28,7 +28,7 @@ Alle packages die zijn gebruikt voor het uitvoeren van het script zijn Rsubread(
 
 
 Tabel 1: Data samples. In de tabel zijn de accension nummer, de leeftijden, het geslacht en of de patiënten reuma hebben te zien.
-<p align="center">
+
 | Accession nummer | Leeftijd | Geslacht | Diagnose |
 | :--- | :---: | :---: | :--- |
 | SRR4785819 | 31 | female | Normal |
@@ -40,6 +40,9 @@ Tabel 1: Data samples. In de tabel zijn de accension nummer, de leeftijden, het 
 | SRR4785986 | 60 | female | Rheumatoid arthritis (established) |
 | SRR4785988 | 59 | female | Rheumatoid arthritis (established) |
 
+
+  <img src="Assets/tabel1.png" alt="Tabel 1 sample data" width="350"/>
+</p>
 
 
 De data is verstrekt door de Afdeling Magische Wetshandhaving en Ollivanders Wandwinkel Archieven. 
