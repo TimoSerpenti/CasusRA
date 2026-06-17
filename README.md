@@ -2,21 +2,20 @@
 
 ## 📁 Inhoud/structuur
 
-- `data/raw/` – fictionele datasets voor de analyse van spreuk effectiviteit, gevaar en welke spreuken het beste samengaan met verschillende types staf.  
-- `data/processed` - verwerkte datasets gegenereerd met scripts 
-- `scripts/` – scripts om prachtige onzin te genereren
-- `resultaten/` - grafieken en tabellen
-- `bronnen/` - gebruikte bronnen 
-- `README.md` - het document om de tekst hier te genereren
 - `assets/` - overige documenten voor de opmaak van deze pagina
+- `bronnen/` - gebruikte bronnen 
+- `data/Raw/` – Onbewerkte sample data
+- `data/Verwerkt` - verwerkte datasets gegenereerd met scripts 
 - `data_stewardship/` - Voor de competentie beheren ga je aantonen dat je projectgegevens kunt beheren met behulp van GitHub. In deze folder kan je hulpvragen terugvinden om je op gang te helpen met de uitleg van data stewardship. 
+- `resultaten/` - grafieken en tabellen
+- `scripts/` – scripts om prachtige onzin te genereren
+- `README.md` - het document om de tekst hier te genereren
 
 ---
 
 ## Inleiding
 
 Reumatoïde Artritis (RA) is de meest voorkomende chronische autoimmuunziekte van gewrichten. RA is een systemische auto-immuunziekte dit betekent dat het immuunsysteem het eigen lichaam aanvalt, niet op één specifieke plek maar verspreidt over het hele lichaam. Het veroorzaakt blijvende inflammatie wat zorgt voor zwellingen van gewrichten, vervorming, een verminderde dagelijkse functionaliteit en levenskwaliteit [(Sharif et al., 2018)](Bronnen/Clinical%20Anatomy%20-%202017%20-%20Sharif%20-%20Rheumatoid%20arthritis%20in%20review%20%20Clinical%20%20anatomical%20%20cellular%20and%20molecular%20points%20of.pdf). RA beïnvloed vooral de gewrichten en kan ook organen beïnvloeden, wat kan leiden tot permanente schade en beperking [(Bullock et al., 2019)](Bronnen/Rheumatoid%20Arthritis%20A%20Brief%20Overview.pdf). De exacte oorzaak van de aandoening is nog niet bekend, zowel genetica als milieu dragen bij aan de ontwikkeling van de ziekte [(Aho & Heliövaara, 2004)](Bronnen/Risk%20factors%20for%20rheumatoid%20arthritis.pdf). Er is tot op heden nog geen geneesmiddel voor de aandoening, wat een aanleiding is voor het uitvoeren van het onderzoek [(Bullock et al., 2019)](Bronnen/Rheumatoid%20Arthritis%20A%20Brief%20Overview.pdf). Het doel van dit onderzoek is om te bepalen of er een verschil is in genexpressie tussen gezonde patiënten en patiënten met Reumatoïde Artritis. Dit doel wordt bereikt door te kijken naar welke genen differentieel tot expressie gebracht zijn bij RA-patiënten, door een DESeq2 analyse uit te voeren. Ook wordt er met behulp van een Volcanoplot gekeken welke genen de grootste verschillen in expressie tussen patiënten vertonen. Als laatst wordt er gekeken naar welke pathways betrokken zijn bij ontwikkeling van RA, door een pathway analyse uit te voeren.
-
 
 ## Methoden
 
@@ -40,13 +39,10 @@ Alle packages die zijn gebruikt voor het uitvoeren van het script zijn Rsubread(
 | SRR4785986 | 60 | female | Rheumatoid arthritis (established) |
 | SRR4785988 | 59 | female | Rheumatoid arthritis (established) |
 
-
-
-
-
-De data is verstrekt door de Afdeling Magische Wetshandhaving en Ollivanders Wandwinkel Archieven. 
-
-De ruwe data van spreuken is eerst bewerkt voor analyse met behulp van [scripts/01_clean_spell_data.R](scripts/01_clean_spell_data.R). Vervolgens zijn de spreuken geanalyseerd op kracht en nauwkeurigheid met [scripts/02_spell_analysis.R](scripts/02_spell_analysis.R).
+Eerst is er een index van het referentiegenoom gemaakt, om uitlijnen sneller te maken. Reads werden uitgelijnd tegen het humane referentiegenoom GRCh38.p14 met Rsubread (2.24.0), waarna BAM-bestanden gesorteerd zen geïndexeerd zijn met Rsamtools (2.26.0). Om te bepalen hoe vaak een read van een bepaald gen voorkomt. Is er vervolgens een count matrix gemaakt met featureCounts op basis van de bijbehorende GTF-annotatie.
+Differentiële genexpressieanalyse werd uitgevoerd met het package DESeq2 (1.50.2).. Hiermee is vervolgens getest op statistisch significante verschillen tussen samples. Genen werden als significant beschouwd wanneer de p-waarde kleiner was dan 0,05 en wanneer de log2 fold change groter was dan 1 of -1, wat betekent dat er sprake is van duidelijke op- of neerregulatie.
+Om de significante genen te visualiseren is een Volcano plot gemaakt met behulp van de EnhancedVolcano (1.28.2) package. Voor het vinden van een pathway met veranderde expressie is er een GO analyse uitgevoerd met goseq (1.62.0) en hulp van geneLenDataBase (1.46.0), org.Hs.eg.db (3.22.0) en AnnotationDbi (1.72.0).
+Met GO.db zijn de Go termen en beschrijvingen verkregen. Als laatst is er een pathway analyse gedaan voor de TNF signaling pathway met behulp van de package pathview(1.50.0) en KEGGREST(1.50.0).
 
 ## Resultaten
 
