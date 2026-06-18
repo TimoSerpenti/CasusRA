@@ -66,7 +66,7 @@ Alle packages die zijn gebruikt voor het uitvoeren van het script zijn `Rsubread
 | SRR4785986 | 60 | female | Rheumatoid arthritis (established) |
 | SRR4785988 | 59 | female | Rheumatoid arthritis (established) |
 
-Eerst is er een `index` van het `referentiegenoom` gemaakt, om uitlijnen sneller te maken. Reads werden uitgelijnd tegen het humane referentiegenoom `GRCh38.p14` met `Rsubread (2.24.0)`, waarna `BAM-bestanden` gesorteerd en geïndexeerd zijn met `Rsamtools (2.26.0)`. Om te bepalen hoe vaak een read van een bepaald gen voorkomt. Is er vervolgens een `count matrix` gemaakt met `featureCounts` op basis van de bijbehorende `GTF-annotatie`.
+Eerst is er een `index` van het `referentiegenoom` gemaakt, om uitlijnen sneller te maken. Reads werden uitgelijnd tegen het humane referentiegenoom `GRCh38.p14` van NCBI met `Rsubread (2.24.0)`, waarna `BAM-bestanden` gesorteerd en geïndexeerd zijn met `Rsamtools (2.26.0)`. Om te bepalen hoe vaak een read van een bepaald gen voorkomt. Is er vervolgens een `count matrix` gemaakt met `featureCounts` op basis van de bijbehorende `GTF-annotatie`.
 
 `Differentiële genexpressieanalyse` werd uitgevoerd met het package `DESeq2 (1.50.2)`. Hiermee is vervolgens getest op statistisch significante verschillen tussen samples. Genen werden als significant beschouwd wanneer de `p-waarde` kleiner was dan `0,05` en wanneer de `log2 fold change` groter was dan `1` of `-1`, wat betekent dat er sprake is van duidelijke op- of neerregulatie.
 
