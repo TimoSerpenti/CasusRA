@@ -26,11 +26,11 @@ Tutor: Dewi van der Bergh
 NHL Stenden - Hogeschool van Hall Larenstein
 
 
-# Genexpressie verschil tussen gezonde en patiënten met Reumatoïde Artritis
+# Genexpressie verschillen bij Reumatoïde Artritis: Hoe Ontstekingsgenen en de TNF-Pathway het Verschil Maken met Gezonde Controles
 
 ## Inleiding
 
-`Reumatoïde Artritis (RA)` is de meest voorkomende chronische autoimmuunziekte van gewrichten. RA is een systemische auto-immuunziekte dit betekent dat het immuunsysteem het eigen lichaam aanvalt, niet op één specifieke plek maar verspreidt over het hele lichaam. Het veroorzaakt blijvende inflammatie wat zorgt voor zwellingen van gewrichten, vervorming, een verminderde dagelijkse functionaliteit en levenskwaliteit [(Sharif et al., 2018)](Bronnen/Clinical%20Anatomy%20-%202017%20-%20Sharif%20-%20Rheumatoid%20arthritis%20in%20review%20%20Clinical%20%20anatomical%20%20cellular%20and%20molecular%20points%20of.pdf). RA beïnvloed vooral de gewrichten en kan ook organen beïnvloeden, wat kan leiden tot permanente schade en beperking [(Bullock et al., 2019)](Bronnen/Rheumatoid%20Arthritis%20A%20Brief%20Overview.pdf).
+`Reumatoïde Artritis (RA)` is de meest voorkomende chronische autoimmuunziekte van gewrichten. RA is een systemische auto-immuunziekte dit betekent dat het immuunsysteem het eigen lichaam aanvalt, niet op één specifieke plek maar verspreid over het hele lichaam. Het veroorzaakt blijvende inflammatie wat zorgt voor zwellingen van gewrichten, vervorming, een verminderde dagelijkse functionaliteit en levenskwaliteit [(Sharif et al., 2018)](Bronnen/Clinical%20Anatomy%20-%202017%20-%20Sharif%20-%20Rheumatoid%20arthritis%20in%20review%20%20Clinical%20%20anatomical%20%20cellular%20and%20molecular%20points%20of.pdf). RA beïnvloedt vooral de gewrichten en kan ook organen beïnvloeden, wat kan leiden tot permanente schade en beperking [(Bullock et al., 2019)](Bronnen/Rheumatoid%20Arthritis%20A%20Brief%20Overview.pdf).
 
 De exacte oorzaak van de aandoening is nog niet bekend, zowel `genetica` als `milieu` dragen bij aan de ontwikkeling van de ziekte [(Aho & Heliövaara, 2004)](Bronnen/Risk%20factors%20for%20rheumatoid%20arthritis.pdf). Er is tot op heden nog geen geneesmiddel voor de aandoening, wat een aanleiding is voor het uitvoeren van het onderzoek [(Bullock et al., 2019)](Bronnen/Rheumatoid%20Arthritis%20A%20Brief%20Overview.pdf). 
 
@@ -61,7 +61,7 @@ Alle packages die zijn gebruikt voor het uitvoeren van het script zijn `Rsubread
 | SRR4785986 | 60 | female | Rheumatoid arthritis (established) |
 | SRR4785988 | 59 | female | Rheumatoid arthritis (established) |
 
-Eerst is er een `index` van het `referentiegenoom` gemaakt, om uitlijnen sneller te maken. Reads werden uitgelijnd tegen het humane referentiegenoom `GRCh38.p14` met `Rsubread (2.24.0)`, waarna `BAM-bestanden` gesorteerd zen geïndexeerd zijn met `Rsamtools (2.26.0)`. Om te bepalen hoe vaak een read van een bepaald gen voorkomt. Is er vervolgens een `count matrix` gemaakt met `featureCounts` op basis van de bijbehorende `GTF-annotatie`.
+Eerst is er een `index` van het `referentiegenoom` gemaakt, om uitlijnen sneller te maken. Reads werden uitgelijnd tegen het humane referentiegenoom `GRCh38.p14` met `Rsubread (2.24.0)`, waarna `BAM-bestanden` gesorteerd en geïndexeerd zijn met `Rsamtools (2.26.0)`. Om te bepalen hoe vaak een read van een bepaald gen voorkomt. Is er vervolgens een `count matrix` gemaakt met `featureCounts` op basis van de bijbehorende `GTF-annotatie`.
 
 `Differentiële genexpressieanalyse` werd uitgevoerd met het package `DESeq2 (1.50.2)`. Hiermee is vervolgens getest op statistisch significante verschillen tussen samples. Genen werden als significant beschouwd wanneer de `p-waarde` kleiner was dan `0,05` en wanneer de `log2 fold change` groter was dan `1` of `-1`, wat betekent dat er sprake is van duidelijke op- of neerregulatie.
 
@@ -73,31 +73,30 @@ Met `GO.db` zijn de Go termen en beschrijvingen verkregen. Als laatst is er een 
 
 Het doel van dit onderzoek was om verschillen te vinden in genexpressie tussen mensen met de aandoening Reumatoïde Artritis en gezonde mensen. Dat is gedaan door de verschillende analyses uit te voeren die besproken zijn in de methode.
 
-### Differentiele expressie van genen
+### Verschil in 15% van de genen tussen RA en gezond
 
-De RNA-seq analyse heeft `2085` significant op gereguleerde genen gevonden bij patiënten met Reuma in vergelijking met de gezonde controles, en `2487` genen die significant neer gereguleerd zijn. In totaal werden er `4572` significant differentieel tot expressie gebracht, van de totaal `29407` variabele genen die zijn meegenomen in de analyse.
+De RNA-seq analyse heeft `2085` significant op gereguleerde genen gevonden bij patiënten met Reuma in vergelijking met de gezonde controles, en `2487` genen die significant neer gereguleerd zijn. In totaal werden er `4572` significant differentieel tot expressie gebracht, van de totaal `29407` variabele genen die zijn meegenomen in de analyse.De RNA-seq-analyse toont aan dat ruim 15% van het genoom significant verschillend tot expressie komt bij RA-patiënten vergeleken met gezonde controles.
 
-### Visualisatie genexpressie
+### Expressieverschillen bij SRGN, ANKRD30BL en MT-ND6
 
-In de `volcano plot` in **Figuur 2** is te zien er is ook een [tweede volcano plot](Resultaten/VolcanoplotREUMA2.png) gemaakt waar meer genen in te zien zijn doordat er minder strikte significantie gebruikt is.
+De volcano plot in **Figuur 1** liet een duidelijke spreiding van genen zien die significant omhoog of omlaag gereguleerd zijn. De plots toonde bovendien enkele zeer sterke uitschieters. Zo vallen met name `SRGN`, `ANKRD30BL` en `MT-ND6 `op door een erg hoge statistische significantie. Ook is er een [tweede volcano plot](Resultaten/VolcanoplotREUMA2.png) gemaakt waar meer genen in te zien waren doordat er minder strikte significantie gebruikt is. SRGN, ANKRD30BL en MT-ND6 zijn de meest prominente moleculaire markers met de grootste expressieverschillen met de patiëntgroepen.	
+
 <p align="center">
   <img src="Resultaten/VolcanoplotREUMA.png" alt="VolcanoPlot" width="400"/>
 </p>
 
 > <sub>*_Figuur 2: VolcanoPlot_* Op de x-as is de `log2foldchange` te zien en op de y-as de `p-waarde`. Genen zijn gefilterd op basis van een gecorrigeerde p-waarde en een absolute. Genen die `rood` gekleurd zijn voldoen aan de criteria. Genen die `groen` gekleurd zijn hebben wel verandering maar zijn niet significant, niet-significante genen zijn `blauw of grijs` weergegeven.</sub>
 
-De volcano plots lieten een duidelijke spreiding van genen zien die significant omhoog of omlaag gereguleerd zijn. De plots toonde bovendien enkele zeer sterke uitschieters. Zoals `SRGN`, `ANKRD30BL` en `MT-ND6 `op door een erg hoge statistische significantie.
+### Oververtegenwoordiging van immuunrespons
 
-### GO-termen
-
-In **Figuur 3** is een staafdiagram te zien waarin de meest verrijkte `GO-termen` te zien zijn. Er werd aangetoond dat immune response, adaptive immune response, immune system process, immunoglobulin complex en antigen binding een oververtegenwoordiging hadden bij mensen met Reuma. 
+In **Figuur 3** is een staafdiagram te zien waarin de meest verrijkte `GO-termen` te zien zijn. Er werd aangetoond dat immune response, adaptive immune response, immune system process, immunoglobulin complex en antigen binding oververtegenwoordigd waren bij mensen met Reuma. 
 <p align="center">
   <img src="Resultaten/Rplot.png" alt="GO-termen" width="400"/>
 </p>
 
 > <sub>**Figuur 3: GO-termen vertegenwoordiging** In het figuur is te zien hoe de vertegenwoordiging van de GO-termen verdeeld is tussen de 20 meest vertegenwoordigde. Op de x-as is de p waarde te zien en op de y-as de GO-termen.<sub>
 
-### Moleculaire pathway
+### Opregulatie van leukocyten en cytokines
 
 De gekozen pathway is [TNF signaling](Resultaten/hsa04668.png), in **Figuur 4** is de pathway analyse te zien. Deze toont de opregulatie van genen betrokken bij de instroom en activering van leukocyten. Ook is er een opregulatie van inflammatoire cytokines en signalering.
 <p align="center">
@@ -109,5 +108,15 @@ De gekozen pathway is [TNF signaling](Resultaten/hsa04668.png), in **Figuur 4** 
 
 ## Conclusie
 
-. 
+In dit onderzoek is aangetoond dat er een significant verschil is tussen genexpressie van gezonde en Reumatoïde Artritis patiënten.
+Bij de RNA-seq analyse zijn van de totaal `29407`genen, `4572` significant op- en neergereguleerde gevonden bij patiënten met Reuma in vergelijking met de gezonde controles. De hoogste significantie en expressieverschillen werden vastgesteld met de volcano plot bij `SRGN`, `ANKRD30BL` en `MT-ND6`.
+De pathway analyse toonde aan dat vooral genen betrokken bij instroom en activering van `leukocyten` opgereguleerd waren. Ook is er een opregulatie van `inflammatoire cytokines` en `signalering`.
+Dit onderzoek toont resultaten aan waaruit te concluderen is dat er een expressieverschil is tussen gezonde personen en RA-patiënten. Wat mogelijk te maken kan hebben met genetische afwijkingen in `ontstekingsreactie` en `immuunrespons routes`.
+
+## Disclaimer gebruik van AI
+
+Voor dit verslag is er op verschillende manieren gebruik gemaakt van AI.
+Er is gebruik gemaakt van AI voor het oplossen van script fouten tijdens analyse, hulp bij het schrijven van de ReadMe code, afbeeldingen gegenereerd (Voorblad en Flowchart), hulp bij interpretatie van resultaten, uitleggen van code + errors en spellingcontrole.
+
+
 
