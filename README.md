@@ -23,7 +23,7 @@ Timo Serpenti - 5524903 - LBM2-B
 
 Tutor: Dewi van der Bergh
 
-NHL Stenden - Hogeschool van Hall Larenstein
+Hogeschool van Hall Larenstein - NHL Stenden
 
 <p align="center">
   <img src="Assets/HVHL.png" alt="Flowchart" width="220"/>       <img src="Assets/NHL.png" alt="Flowchart" width="100"/>
