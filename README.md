@@ -121,6 +121,8 @@ De pathway analyse toonde aan dat vooral genen betrokken bij instroom van `leuko
   
 Dit onderzoek toont resultaten aan waaruit te concluderen is dat er een expressieverschil is tussen gezonde personen en RA-patiënten. Wat mogelijk te maken kan hebben met genetische afwijkingen in `ontstekingsreactie` en `immuunrespons routes`.
 
+Voor vervolg onderzoek zou het goed zijn om een grotere steekproef te nemen, ook zou er naar andere pathways gekeken kunnen worden om te kijken of daar ook significant verschil is.
+
 ## Disclaimer gebruik van AI
 
 Voor dit verslag is er op verschillende manieren gebruik gemaakt van AI.
