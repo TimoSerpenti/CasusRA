@@ -84,7 +84,7 @@ De RNA-seq analyse heeft `2085` significant op gereguleerde genen gevonden bij p
 
 ### Expressieverschillen bij SRGN, ANKRD30BL en MT-ND6
 
-De volcano plot in **Figuur 1** liet een duidelijke spreiding van genen zien die significant omhoog of omlaag gereguleerd zijn. De plots toonde bovendien enkele zeer sterke uitschieters. Zo vallen met name `SRGN`, `ANKRD30BL` en `MT-ND6 `op door een erg hoge statistische significantie. Ook is er een [tweede volcano plot](Resultaten/VolcanoplotREUMA2.png) gemaakt waar meer genen in te zien waren doordat er minder strikte significantie gebruikt is. SRGN, ANKRD30BL en MT-ND6 zijn de meest prominente moleculaire markers met de grootste expressieverschillen met de patiëntgroepen.	
+`De volcano plot` in **Figuur 1** liet een duidelijke spreiding van genen zien die significant omhoog of omlaag gereguleerd zijn. Het plot toonde bovendien enkele zeer sterke uitschieters. Zo vallen met name `SRGN`, `ANKRD30BL` en `MT-ND6 `op door een erg hoge statistische significantie. Ook is er een [tweede volcano plot](Resultaten/VolcanoplotREUMA2.png) gemaakt waar meer genen in te zien waren doordat er minder strikte significantie gebruikt is. SRGN, ANKRD30BL en MT-ND6 zijn de meest prominente moleculaire markers met de grootste expressieverschillen met de patiëntgroepen.	
 
 <p align="center">
   <img src="Resultaten/VolcanoplotREUMA.png" alt="VolcanoPlot" width="400"/>
