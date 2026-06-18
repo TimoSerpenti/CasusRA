@@ -82,7 +82,7 @@ In **Figuur 2** is een staafdiagram te zien waarin de meest verrijkte `GO-termen
   <img src="Resultaten/Rplot.png" alt="GO-termen" width="400"/>
 </p>
 
-<sub>**Figuur 2: GO-termen vertegenwoordiging** In het figuur is te zien hoe de vertegenwoordiging van de GO-termen verdeeld is tussen de 20 meest vertegenwoordigde. Op de x-as is de p waarde te zien en op de y-as de GO-termen.<sub>
+> <sub>**Figuur 2: GO-termen vertegenwoordiging** In het figuur is te zien hoe de vertegenwoordiging van de GO-termen verdeeld is tussen de 20 meest vertegenwoordigde. Op de x-as is de p waarde te zien en op de y-as de GO-termen.<sub>
 
 ### Moleculaire pathway
 
@@ -91,7 +91,7 @@ De gekozen pathway is [TNF signaling](Resultaten/hsa04668.png), in **Figuur 3** 
   <img src="Resultaten/hsa04668.pathview.png" alt="Pathview " width="400"/>
 </p>
 
-**Figuur 3: Pathview analyse** In het figuur is te zien welke genen binnen de pathway op- en neergereguleerd waren. Rood staat voor opregulatie van het gen en groen neerregulatie.
+> <sub>**Figuur 3: Pathview analyse** In het figuur is te zien welke genen binnen de pathway op- en neergereguleerd waren. Rood staat voor opregulatie van het gen en groen neerregulatie.<sub>
 
 
 ## Conclusie
