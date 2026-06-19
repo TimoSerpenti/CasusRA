@@ -2,7 +2,7 @@
 
 - `Assets/` - Opmaak
 - `Bronnen/` - Gebruikte bronnen
-- `Data_stewardship/` - Informatie over databeheren
+- `Data_stewardship/` - Informatie over databeheer
 - `Data/Raw/` – Onbewerkte sample data
 - `Data/Verwerkt` - Verwerkte data gegenereerd met scripts 
 - `Resultaten/` - Resultaten, Figuren etc.
@@ -26,7 +26,7 @@ Tutor: Dewi van der Bergh
 Hogeschool van Hall Larenstein - NHL Stenden
 
 <p align="center">
-  <img src="Assets/HVHL.png" alt="Flowchart" width="220"/>       <img src="Assets/NHL.png" alt="Flowchart" width="100"/>
+  <img src="Assets/HVHL.png" alt="HVHL" width="220"/>       <img src="Assets/NHL.png" alt="NHL" width="100"/>
 </p>
 
 ---
@@ -35,16 +35,16 @@ Hogeschool van Hall Larenstein - NHL Stenden
 
 ## Inleiding
 
-`Reumatoïde Artritis (RA)` is de meest voorkomende chronische autoimmuunziekte van gewrichten. RA is een systemische auto-immuunziekte dit betekent dat het immuunsysteem het eigen lichaam aanvalt, niet op één specifieke plek maar verspreid over het hele lichaam. Het veroorzaakt blijvende inflammatie wat zorgt voor zwellingen van gewrichten, vervorming, een verminderde dagelijkse functionaliteit en levenskwaliteit [(Sharif et al., 2018)](Bronnen/Clinical%20Anatomy%20-%202017%20-%20Sharif%20-%20Rheumatoid%20arthritis%20in%20review%20%20Clinical%20%20anatomical%20%20cellular%20and%20molecular%20points%20of.pdf). RA beïnvloedt vooral de gewrichten en kan ook organen beïnvloeden, wat kan leiden tot permanente schade en beperking [(Bullock et al., 2019)](Bronnen/Rheumatoid%20Arthritis%20A%20Brief%20Overview.pdf).
+`Reumatoïde Artritis (RA)` is de meest voorkomende chronische autoimmuunziekte van gewrichten. RA is een systemische auto-immuunziekte. Dit betekent dat het immuunsysteem het eigen lichaam aanvalt, niet op één specifieke plek maar verspreid over het hele lichaam. Het veroorzaakt blijvende inflammatie, wat zorgt voor zwellingen van gewrichten, vervorming, een verminderde dagelijkse functionaliteit en levenskwaliteit [(Sharif et al., 2018)](Bronnen/Clinical%20Anatomy%20-%202017%20-%20Sharif%20-%20Rheumatoid%20arthritis%20in%20review%20%20Clinical%20%20anatomical%20%20cellular%20and%20molecular%20points%20of.pdf). RA beïnvloedt vooral de gewrichten en kan ook organen beïnvloeden, wat kan leiden tot permanente schade en beperking [(Bullock et al., 2019)](Bronnen/Rheumatoid%20Arthritis%20A%20Brief%20Overview.pdf).
 
 De exacte oorzaak van de aandoening is nog niet bekend, zowel `genetica` als `milieu` dragen bij aan de ontwikkeling van de ziekte [(Aho & Heliövaara, 2004)](Bronnen/Risk%20factors%20for%20rheumatoid%20arthritis.pdf). Er is tot op heden nog geen geneesmiddel voor de aandoening, wat een aanleiding is voor het uitvoeren van het onderzoek [(Bullock et al., 2019)](Bronnen/Rheumatoid%20Arthritis%20A%20Brief%20Overview.pdf). 
 
-Het doel van dit onderzoek is om te bepalen of er een verschil is in `genexpressie` tussen gezonde patiënten en patiënten met Reumatoïde Artritis. Dit doel wordt bereikt door te kijken naar welke genen `differentieel` tot expressie gebracht zijn bij RA-patiënten, ook wordt er gekeken welke genen de grootste verschillen in expressie tussen patiënten vertone en als laatst wordt er gekeken naar welke `pathways` betrokken zijn bij ontwikkeling van RA.
+Het doel van dit onderzoek is om te bepalen of er een verschil is in `genexpressie` tussen gezonde patiënten en patiënten met Reumatoïde Artritis. Dit doel wordt bereikt door te kijken naar welke genen `differentieel` tot expressie gebracht zijn bij RA-patiënten, ook wordt er gekeken welke genen de grootste verschillen in expressie tussen patiënten vertonen en als laatst wordt er gekeken naar welke `pathways` betrokken zijn bij ontwikkeling van RA.
 
 
 ## Methoden
 
-Voor dit onderzoek is data gebruikt uit een eerdere studie van [(Platzer et al., 2019)](Bronnen/samples.pdf), deze data is verkregen van 4 samples van gezonde patiënten en 4 van patiënten met RA te zien in **Tabel 1**. RNA is geïsoleerd uit gewrichtsslijmvlies weefsel van patiënten met RA, en gesequenced met de Illumina methode. Alle analyses zijn uitgevoerd met `R (versie 4.5.3)` in `RStudio`. Er is gebruik gemaakt van een script om reproduceerbaarheid te garanderen. De methode is te zien in de `flowchart` hieronder.
+Voor dit onderzoek is data gebruikt uit een eerdere studie van [(Platzer et al., 2019)](Bronnen/samples.pdf), deze data is verkregen van 4 samples van gezonde patiënten en 4 van patiënten met RA, zoals weergegeven in **Tabel 1**. RNA is geïsoleerd uit gewrichtsslijmvliesweefsel van patiënten met RA, en gesequenced met de Illumina methode. Alle analyses zijn uitgevoerd met `R (versie 4.5.3)` in `RStudio`. Er is gebruik gemaakt van een script om reproduceerbaarheid te garanderen. De methode is te zien in de `flowchart` hieronder.
 <p align="center">
   <img src="Assets/Flowchart.png" alt="Flowchart" width="400"/>
 </p>
@@ -72,7 +72,7 @@ Eerst is er een `index` van het `referentiegenoom` gemaakt, om uitlijnen sneller
 
 Om de significante genen te visualiseren is een `Volcano plot` gemaakt met behulp van de `EnhancedVolcano (1.28.2)` package. Voor het vinden van een pathway met veranderde expressie is er een `GO analyse` uitgevoerd met `goseq (1.62.0)` en hulp van `geneLenDataBase (1.46.0)`, `org.Hs.eg.db (3.22.0)` en `AnnotationDbi (1.72.0)`.
 
-Met `GO.db` zijn de Go termen en beschrijvingen verkregen. Als laatst is er een pathway analyse gedaan voor de `TNF signaling pathway` met behulp van de package `pathview(1.50.0)` en `KEGGREST(1.50.0)`.
+Met `GO.db` zijn de GO-termen en beschrijvingen verkregen. Als laatst is er een pathway analyse gedaan voor de `TNF signaling pathway` met behulp van de package `pathview(1.50.0)` en `KEGGREST(1.50.0)`.
 
 ## Resultaten
 
@@ -80,11 +80,11 @@ Het doel van dit onderzoek was om verschillen te vinden in genexpressie tussen m
 
 ### Verschil in 15% van de genen tussen RA en gezond
 
-De RNA-seq analyse heeft `2085` significant op gereguleerde genen gevonden bij patiënten met Reuma in vergelijking met de gezonde controles, en `2487` genen die significant neer gereguleerd zijn. In totaal werden er `4572` significant differentieel tot expressie gebracht, van de totaal `29407` variabele genen die zijn meegenomen in de analyse.De RNA-seq-analyse toont aan dat ruim 15% van het genoom significant verschillend tot expressie komt bij RA-patiënten vergeleken met gezonde controles.
+De RNA-seq analyse heeft `2085` significant opgereguleerde genen gevonden bij patiënten met Reuma in vergelijking met de gezonde controles, en `2487` genen die significant neergereguleerd zijn. In totaal werden er `4572` significant differentieel tot expressie gebracht, van de totaal `29407` variabele genen die zijn meegenomen in de analyse. De RNA-seq-analyse toont aan dat ruim 15% van het genoom significant verschillend tot expressie komt bij RA-patiënten vergeleken met gezonde controles.
 
 ### Expressieverschillen bij SRGN, ANKRD30BL en MT-ND6
 
-`De volcano plot` in **Figuur 1** liet een duidelijke spreiding van genen zien die significant omhoog of omlaag gereguleerd zijn. Het plot toonde bovendien enkele zeer sterke uitschieters. Zo vallen met name `SRGN`, `ANKRD30BL` en `MT-ND6 `op door een erg hoge statistische significantie. Ook is er een [tweede volcano plot](Resultaten/VolcanoplotREUMA2.png) gemaakt waar meer genen in te zien waren doordat er minder strikte significantie gebruikt is. SRGN, ANKRD30BL en MT-ND6 zijn de meest prominente moleculaire markers met de grootste expressieverschillen met de patiëntgroepen.	
+`De volcano plot` in **Figuur 1** liet een duidelijke spreiding van genen zien die significant omhoog of omlaag gereguleerd zijn. Het plot toonde bovendien enkele zeer sterke uitschieters. Zo vallen met name `SRGN`, `ANKRD30BL` en `MT-ND6 `op door een erg hoge statistische significantie. Ook is er een [tweede volcano plot](Resultaten/VolcanoplotREUMA2.png) gemaakt waar meer genen in te zien waren doordat er minder strikte significantie gebruikt is. SRGN, ANKRD30BL en MT-ND6 zijn de meest prominente moleculaire markers met de grootste expressieverschillen tussen de patiëntgroepen.	
 
 <p align="center">
   <img src="Resultaten/VolcanoplotREUMA.png" alt="VolcanoPlot" width="400"/>
@@ -99,11 +99,11 @@ In **Figuur 3** is een staafdiagram te zien waarin de meest verrijkte `GO-termen
   <img src="Resultaten/Rplot.png" alt="GO-termen" width="800"/>
 </p>
 
-> <sub>**Figuur 3: GO-termen vertegenwoordiging** In het figuur is te zien hoe de vertegenwoordiging van de GO-termen verdeeld is tussen de 20 meest vertegenwoordigde. Op de x-as is de p waarde te zien en op de y-as de GO-termen.<sub>
+> <sub>**Figuur 3: GO-termen vertegenwoordiging** In het figuur is te zien hoe de vertegenwoordiging van de GO-termen verdeeld is tussen de 20 meest vertegenwoordigde. Op de x-as is de p-waarde te zien en op de y-as de GO-termen.<sub>
 
 ### Opregulatie van leukocyten en cytokines
 
-Er werd gekozen voor de [TNF signaling pathway](Resultaten/hsa04668.png) (hsa04668) omdat deze een belangrijk rol in het immuunsysteem speelt en, ontstekingen  en celdood reguleert. In **Figuur 4** is de pathway analyse te zien. Deze toont de opregulatie van genen betrokken bij de instroom van leukocyten. Ook is er een opregulatie van inflammatoire cytokines en signalering. Dit zijn logische opregulaties bij het ziekte beeld, omdat het een chronische immuun aandoening is.
+Er werd gekozen voor de [TNF signaling pathway](Resultaten/hsa04668.png) (hsa04668) omdat deze een belangrijke rol in het immuunsysteem speelt en, ontstekingen  en celdood reguleert. In **Figuur 4** is de pathway analyse te zien. Deze toont de opregulatie van genen betrokken bij de instroom van leukocyten. Ook is er een opregulatie van inflammatoire cytokines en signalering. Dit zijn logische opregulaties bij het ziektebeeld, omdat het een chronische immuunaandoening is.
 <p align="center">
   <img src="Resultaten/hsa04668.pathview.png" alt="Pathview " width="800"/>
 </p>
@@ -121,7 +121,7 @@ De pathway analyse toonde aan dat vooral genen betrokken bij instroom van `leuko
   
 Dit onderzoek toont resultaten aan waaruit te concluderen is dat er een expressieverschil is tussen gezonde personen en RA-patiënten. Wat mogelijk te maken kan hebben met genetische afwijkingen in `ontstekingsreactie` en `immuunrespons routes`.
 
-Voor vervolg onderzoek zou het goed zijn om een grotere steekproef te nemen, ook zou er naar andere pathways gekeken kunnen worden om te kijken of daar ook significante verschillen zijn.
+Voor vervolgonderzoek zou het goed zijn om een grotere steekproef te nemen, ook zou er naar andere pathways gekeken kunnen worden om te kijken of daar ook significante verschillen zijn.
 
 ---
 
@@ -129,7 +129,7 @@ Voor vervolg onderzoek zou het goed zijn om een grotere steekproef te nemen, ook
 
 Voor dit verslag is er op verschillende manieren gebruik gemaakt van AI.
 
-Er is gebruik gemaakt van AI voor het oplossen van script fouten tijdens analyse, hulp bij het schrijven van de ReadMe code, afbeeldingen gegenereerd (Voorblad en Flowchart), titelinspiratie, hulp bij interpretatie van resultaten, uitleggen van code + errors en spellingcontrole.
+Er is gebruik gemaakt van AI voor het oplossen van script fouten tijdens analyse, hulp bij het schrijven van de README-code, afbeeldingen gegenereerd (Voorblad en Flowchart), titelinspiratie, hulp bij interpretatie van resultaten, uitleggen van code en foutmeldingen en spellingcontrole.
 
 De gebruikte AI modellen zijn ChatGPT(GPT-5.5) en Google Gemini(Gemini 3.5 Flash).
 
