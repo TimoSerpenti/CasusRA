@@ -2,11 +2,13 @@ getwd()
 install.packages("BiocManager")
 BiocManager::install('Rsubread')
 library(Rsubread)
+# Indexeren referentiegenoom
 buildindex(
   basename = 'Reuma',
   reference = 'Reuma/ncbi_dataset/data/GCF_000001405.40/GCF_000001405.40_GRCh38.p14_genomic.fna',
   memory = 8000,
   indexSplit = TRUE)
+# Mappen van de reads
 align.reuma1 <- align(index = "Reuma", readfile1 = "Data_RA_raw/SRR4785979_1_subset40k.fastq", readfile2= "Data_RA_raw/SRR4785979_2_subset40k.fastq", output_file = "reuma1.BAM")
 align.reuma2 <- align(index = "Reuma", readfile1 = "Data_RA_raw/SRR4785980_1_subset40k.fastq", readfile2= "Data_RA_raw/SRR4785980_2_subset40k.fastq", output_file = "reuma2.BAM")
 align.reuma3 <- align(index = "Reuma", readfile1 = "Data_RA_raw/SRR4785986_1_subset40k.fastq", readfile2= "Data_RA_raw/SRR4785986_2_subset40k.fastq", output_file = "reuma3.BAM")
@@ -15,6 +17,7 @@ align.rctrl1 <- align(index = "Reuma", readfile1 = "Data_RA_raw/SRR4785819_1_sub
 align.rctrl2 <- align(index = "Reuma", readfile1 = "Data_RA_raw/SRR4785820_1_subset40k.fastq", readfile2= "Data_RA_raw/SRR4785820_2_subset40k.fastq", output_file = "rctrl2.BAM")
 align.rctrl3 <- align(index = "Reuma", readfile1 = "Data_RA_raw/SRR4785828_1_subset40k.fastq", readfile2= "Data_RA_raw/SRR4785828_2_subset40k.fastq", output_file = "rctrl3.BAM")
 align.rctrl4 <- align(index = "Reuma", readfile1 = "Data_RA_raw/SRR4785831_1_subset40k.fastq", readfile2= "Data_RA_raw/SRR4785831_2_subset40k.fastq", output_file = "rctrl4.BAM")
+# Sorteren en indexeren BAM-files
 BiocManager::install('Rsamtools')
 library(Rsamtools)
 reumasamples <- c('reuma1', 'reuma2', 'reuma3', 'reuma4', 'rctrl1', 'rctrl2', 'rctrl3', 'rctrl4')
@@ -23,6 +26,7 @@ lapply(reumasamples, function(s) {sortBam(file = paste0(s, '.BAM'), destination 
 lapply(reumasamples, function(s) {indexBam(file = paste0(s, '.sorted.bam'))
 })
 allreumasamples <- c('reuma1.BAM', 'reuma2.BAM', 'reuma3.BAM', 'reuma4.BAM', 'rctrl1.BAM', 'rctrl2.BAM', 'rctrl3.BAM', 'rctrl4.BAM')
+# Countmatrix maken
 count_matrixreuma <- featureCounts( files = allreumasamples,
                                annot.ext = "Reuma/ncbi_dataset/data/GCF_000001405.40/genomic.gtf",
                                isPairedEnd = TRUE,
@@ -31,8 +35,10 @@ count_matrixreuma <- featureCounts( files = allreumasamples,
 str(count_matrixreuma)
 countsreuma <- count_matrixreuma$counts
 head(countsreuma)
+# Kolomnamen
 colnames(countsreuma) <- c('reuma1', 'reuma2', 'reuma3', 'reuma4', 'rctrl1', 'rctrl2', 'rctrl3', 'rctrl4')
 head(countsreuma)
+# Opslaan countmatrix
 write.csv(countsreuma, "reuma_countmatrix.csv")
 
 countsreuma <- read.csv("reuma_countmatrix.csv", row.names = 1)
@@ -44,32 +50,33 @@ library("DESeq2")
 library("KEGGREST")
 library(EnhancedVolcano)
 library(pathview)
+# Tabel aanmaken behandeld / onbehandeld
 samples <- c("reuma", "reuma", "reuma","reuma", "control", "control", "control", "control")
 samples_table <- data.frame(samples)
 rownames(samples_table) <- c('reuma1', 'reuma2', 'reuma3', 'reuma4', 'rctrl1', 'rctrl2', 'rctrl3', 'rctrl4')
 head(samples_table)
-
 reuma_table<- read.table("count_matrix_RA.txt", row.names= 1)
 completesamples <- c("control", "control", "control", "control","reuma", "reuma", "reuma","reuma")
 complete_table <- data.frame(completesamples)
 rownames(samples_table) <- c('rctrl1', 'rctrl2', 'rctrl3', 'rctrl4','reuma1', 'reuma2', 'reuma3', 'reuma4')
 colnames(reuma_table) <- c( 'rctrl1', 'rctrl2', 'rctrl3', 'rctrl4','reuma1', 'reuma2', 'reuma3', 'reuma4')
 head(complete_table)
+# DESeqDataSet object maken
 ddsreuma <- DESeqDataSetFromMatrix(countData = reuma_table,
                               colData = complete_table,
                               design = ~ completesamples)
-
-
-
-
+# Statistische analyse
 ddsreuma <- DESeq(ddsreuma)
 reumaresultaten <- results(ddsreuma)
+# Opslaan resultaten
 write.table(reumaresultaten, file = 'ResultatenReuma.csv', row.names = TRUE, col.names = TRUE)
+# Kijken hoeveel genen veranderd zijn
 sum(reumaresultaten$padj < 0.05 & reumaresultaten$log2FoldChange > 1, na.rm = TRUE)
 sum(reumaresultaten$padj < 0.05 & reumaresultaten$log2FoldChange < -1, na.rm = TRUE)
 hoogste_fold_change <- reumaresultaten[order(reumaresultaten$log2FoldChange, decreasing = TRUE), ]
 laagste_fold_change <- reumaresultaten[order(reumaresultaten$log2FoldChange, decreasing = FALSE), ]
 laagste_p_waarde <- reumaresultaten[order(reumaresultaten$padj, decreasing = FALSE), ]
+# Maken volcano plot
 EnhancedVolcano(reumaresultaten,
                 lab = rownames(reumaresultaten),
                 x = 'log2FoldChange',
@@ -84,15 +91,15 @@ EnhancedVolcano(
   pointSize = 1,
   labSize = 3
 )
-dev.copy(png, 'VolcanoplotREUMA2.png', 
+# Opslaan afbeelding
+dev.copy(png, 'VolcanoplotREUMA.png', 
          width = 8,
          height = 10,
          units = 'in',
          res = 500)
 dev.off()
 
-  
-  
+# GO - analyse  
 library(dplyr)
 
 rownames.all = rownames(reumaresultaten)
@@ -127,10 +134,11 @@ enriched.GO = GO.wall$category[GO.wall$over_represented_pvalue<.05]
 class(enriched.GO)
 head(enriched.GO)
 length(enriched.GO)
-
+# Aanmaken bestand met GO termen
 library(GO.db)
 capture.output(for(go in enriched.GO[1:258]) { print(GOTERM[[go]])
   cat("--------------------------------------\n")}, file="SigGo.txt")
+# Plot maken van de 20 meest vertegenwoordigde pathways
 GO.sig <- GO.wall %>% 
   filter(over_represented_pvalue < 0.05)
 topGO <- GO.sig %>%
@@ -146,21 +154,21 @@ ggplot(topGO,
   xlab("GO term") +
   ylab("-log10(p-value)") +
   ggtitle("Top enriched GO terms in Rheumatoid Arthritis")
-
+# Processen vinden bij GO-term 0006954
 genes_go <- AnnotationDbi::select(
   org.Hs.eg.db,
   keys = "GO:0006954",
   keytype = "GOALL",
   columns = "SYMBOL"
 )
+# Klaarmaken voor pathway analyse
 go_deg <- intersect(genes_go$SYMBOL, rownames_deg)
-
 go_deg
 reumaresultaten[1] <- NULL
 reumaresultaten[2:5] <- NULL
 ReumaPathway <- reumaresultaten$log2FoldChange
 names(ReumaPathway) <- rownames(reumaresultaten)
-
+# Pathway analyse
 library(pathview)
 pathview(
   gene.data = reumaresultaten,
